@@ -234,6 +234,12 @@ exports.deleteProduct=(req,res)=>{
 exports.editProduct=(req,res)=>{
     let id = req.params.productid
     const { title, SKU, price, shortDescription, description, category, VAT } = req.body
+
+    let imagearray = []
+    req.files.map(file => {
+        imagearray.push(file.path)
+    })
+
     if (!title) {
         return res.status(400).json({ error: "Title is required" })
     }
@@ -254,6 +260,9 @@ exports.editProduct=(req,res)=>{
         description:description||'',
         category,
         VAT:VAT||0
+    }
+    if(imagearray.length>0){
+        options.productImages = imagearray
     }
     Product.findByIdAndUpdate(id,{$set:options},{new:true})
     .populate("category")

@@ -17,7 +17,7 @@ router.get('/getproduct/:productslug',getProductBySlug)
 router.get("/allproducts",allProducts)
 
 router.delete('/delete/:productid',requireSignin,adminMiddleware,deleteProduct)
-router.patch('/edit/:productid',requireSignin,adminMiddleware,editProduct)
+router.patch('/edit/:productid',requireSignin,adminMiddleware,upload.array('productImg'),editProduct)
 
 router.post('/bulk',requireSignin,adminMiddleware,fileUpload(),bulkUpload)
 
