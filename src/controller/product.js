@@ -302,7 +302,7 @@ csv.parseString(authorFile.data.toString())
             price: data[4],
             SKU: data[5],
             VAT: data[6],
-            productImages:[data[7],data[8],data[9]],
+            productImages:[data[7],data[8],data[9],data[10],data[11]],
             creator:req.user._id
           });
     })
